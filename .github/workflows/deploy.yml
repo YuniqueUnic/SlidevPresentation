@@ -1,54 +1,59 @@
 name: Deploy pages
 
 on:
-    workflow_dispatch:
-    push:
-        branches: [main,master,dev]
+  workflow_dispatch:
+  push:
+    branches: [main,master,dev]
 
 permissions:
-    contents: read
-    pages: write
-    id-token: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-    group: pages
-    cancel-in-progress: false
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: "lts/*"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
 
-            - name: Setup @antfu/ni
-              run: npm i -g @antfu/ni
+      - name: Setup @antfu/ni
+        run: npm i -g @antfu/ni
 
-            - name: Install dependencies
-              run: nci
+      - name: Install dependencies
+        run: nci
 
-            - name: Build
-              run: nr build --base /${{github.event.repository.name}}/
+      - name: Build
+        run: nr build --base /${{github.event.repository.name}}/
 
-            - name: Setup Pages
-              uses: actions/configure-pages@v4
+      - name: Copy assets to dist folder
+        run: |
+          mkdir -p dist/assets/
+          cp -r ./assets/ dist/assets/
 
-            - uses: actions/upload-pages-artifact@v3
-              with:
-                  path: dist
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-    deploy:
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        needs: build
-        runs-on: ubuntu-latest
-        name: Deploy
-        steps:
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
