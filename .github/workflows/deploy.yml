@@ -36,8 +36,8 @@ jobs:
 
       - name: Copy assets to dist folder
         run: |
-          mkdir -p dist/assets/
-          cp -r ./assets/ dist/assets/
+          mkdir -p dist/
+          cp -r ./assets/ dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
