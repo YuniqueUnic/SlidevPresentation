@@ -1,0 +1,12 @@
+GET http://121.41.3.22:52016/api/tags HTTP/1.1
+
+###
+
+POST http://121.41.3.22:52016/api/generate HTTP/1.1
+content-type: application/json
+
+{
+    "model": "DSR18B:latest",
+    "prompt": "为什么草是绿的？",
+    "stream": false
+}
