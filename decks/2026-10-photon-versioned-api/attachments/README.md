@@ -1,6 +1,6 @@
 # Photon Versioned API 三条路线对比：手写 Adapter、Cadwyn、xidl
 
-**核对日期 2026-10-14。** 本文对照三份调研稿（《Photon API版本化治理与映射层调研》《XIDL × Photon Versioned API 深度审计》《Cadwyn、XIDL 对比与最小可落地方案》），以及 xidl 本机仓库与上游 issue、Cadwyn 源码和 Photon 各仓的实际语言，评审“三种做法”的理解是否成立，并给出修正、扩充和可运行的代码示例。演示文稿为 [../slides.md](../slides.md)（Slidev，44 页：先讲 Stripe、Polar 的做法和核心要求，再讲 Photon 的三种方案；面向不熟悉这个领域的读者），已导出 PDF（构建时导出）；在仓库根目录运行 `pnpm dev 2026-10-photon-versioned-api` 可以现场演示，包括 magic-move 代码动画。所有示例在 [examples/](examples/) 中，每个都实际运行或编译过（见文末“验证”）。
+**核对日期 2026-10-14。** 本文对照三份调研稿（《Photon API版本化治理与映射层调研》《XIDL × Photon Versioned API 深度审计》《Cadwyn、XIDL 对比与最小可落地方案》），以及 xidl 本机仓库与上游 issue、Cadwyn 源码和 Photon 各仓的实际语言，评审“三种做法”的理解是否成立，并给出修正、扩充和可运行的代码示例。完整调研与第一性原理推导详见同目录下的完整文档：[Photon 接口版本管理完整调研：从第一性原理到工程落地](RESEARCH.md)。演示文稿为 [../slides.md](../slides.md)（Slidev，44 页：先讲 Stripe、Polar 的做法和核心要求，再讲 Photon 的三种方案；面向不熟悉这个领域的读者），已导出 PDF（构建时导出）；在仓库根目录运行 `pnpm dev 2026-10-photon-versioned-api` 可以现场演示，包括 magic-move 代码动画。所有示例在 [examples/](examples/) 中，每个都实际运行或编译过（见文末“验证”）。
 
 ## 一、结论
 

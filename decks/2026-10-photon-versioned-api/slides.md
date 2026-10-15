@@ -1922,8 +1922,9 @@ layout: end
 <div class="kicker">Photon · API 版本管理</div>
 <h1 class="section-title">谢谢</h1>
 <div class="section-bar mx-auto" style="background:var(--ph-spectrum)"></div>
-<div class="flex gap-3 mt-8 justify-center">
-<a class="pill link" href="https://github.com/YuniqueUnic/SlidevPresentation/blob/main/decks/2026-10-photon-versioned-api/attachments/README.md" target="_blank" rel="noopener"><ph-file-text /> 完整文档：attachments/README.md <ph-arrow-up-right /></a>
+<div class="flex flex-wrap gap-3 mt-8 justify-center">
+<a class="pill link" href="https://github.com/YuniqueUnic/SlidevPresentation/blob/main/decks/2026-10-photon-versioned-api/attachments/RESEARCH.md" target="_blank" rel="noopener"><ph-book-open /> 完整调研：attachments/RESEARCH.md <ph-arrow-up-right /></a>
+<a class="pill link" href="https://github.com/YuniqueUnic/SlidevPresentation/blob/main/decks/2026-10-photon-versioned-api/attachments/README.md" target="_blank" rel="noopener"><ph-file-text /> 对比简报：attachments/README.md <ph-arrow-up-right /></a>
 <a class="pill link" href="https://github.com/YuniqueUnic/SlidevPresentation/tree/main/decks/2026-10-photon-versioned-api/attachments/examples" target="_blank" rel="noopener"><ph-code /> 可运行示例：attachments/examples/ <ph-arrow-up-right /></a>
 </div>
 </div>
