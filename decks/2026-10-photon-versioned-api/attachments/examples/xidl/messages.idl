@@ -1,0 +1,76 @@
+#pragma xidlc package photon_messages
+
+// One timeline. The last member is the version this file describes (HEAD).
+@version
+enum ApiVersions {
+    @rename("2026-07") v2026_07,
+    @rename("2026-10") v2026_10,
+};
+
+enum Protocol {
+    imessage,
+    sms,
+    // A new channel: response enums are consumer-breaking unless open.
+    @added(ApiVersions::v2026_10)
+    whatsapp,
+};
+
+@added(ApiVersions::v2026_10)
+struct Sender {
+    string handle;
+    Protocol protocol;
+};
+
+struct Message {
+    string id;
+
+    // 2026-07: a phone number string, removed in 2026-10.
+    // The old member keeps the wire name "sender" through @rename,
+    // so HEAD code gets the clean name.
+    @removed(ApiVersions::v2026_10)
+    @rename("sender")
+    string legacy_sender;
+
+    // 2026-10: a structured sender under the same wire name.
+    @added(ApiVersions::v2026_10)
+    Sender sender;
+
+    string text;
+
+    // Additive in 2026-10.
+    @added(ApiVersions::v2026_10)
+    @optional string thread_id;
+};
+
+struct SendMessageRequest {
+    @removed(ApiVersions::v2026_10)
+    string recipient;
+
+    @added(ApiVersions::v2026_10)
+    Sender to;
+
+    string text;
+};
+
+@http(404)
+exception NotFound {
+    string id;
+};
+
+@added(ApiVersions::v2026_10)
+@http(409)
+exception ThreadClosed {
+    string thread_id;
+};
+
+interface Messages {
+    @get(path = "/v1/messages/{id}")
+    Message get(@path string id) raises(NotFound);
+
+    @post(path = "/v1/messages")
+    Message send(@body SendMessageRequest request) raises(NotFound, ThreadClosed);
+
+    @added(ApiVersions::v2026_10)
+    @get(path = "/v1/threads/{thread_id}/messages")
+    sequence<Message> list_thread(@path string thread_id);
+};

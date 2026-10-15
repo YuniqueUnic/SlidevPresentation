@@ -1,0 +1,133 @@
+{
+  "$comment": "use = 当前使用的文件（数组则随机挑一个，避免重复感）；candidates = 可选的备选。以 synth: 开头的是浏览器实时合成的声音，不是文件。改 use 即可换音效。",
+  "effects": {
+    "click": {
+      "label": "点击（每一步）",
+      "use": [
+        "synth:soft-tick"
+      ],
+      "candidates": [
+        "synth:soft-tick",
+        "tick_001",
+        "tick_002",
+        "click_001",
+        "click_002",
+        "click_003"
+      ]
+    },
+    "slide": {
+      "label": "翻页",
+      "use": [
+        "bookFlip1",
+        "bookFlip2",
+        "bookFlip3"
+      ],
+      "candidates": [
+        "bookFlip1",
+        "bookFlip2",
+        "bookFlip3",
+        "scroll_002"
+      ]
+    },
+    "reveal": {
+      "label": "内容出现",
+      "use": [
+        "select_001"
+      ],
+      "candidates": [
+        "select_001",
+        "select_003",
+        "open_001",
+        "maximize_004"
+      ]
+    },
+    "pop": {
+      "label": "轻提示",
+      "use": [
+        "drop_002",
+        "drop_003"
+      ],
+      "candidates": [
+        "pluck_001",
+        "pluck_002",
+        "drop_002",
+        "drop_003"
+      ]
+    },
+    "success": {
+      "label": "成功 / 完成",
+      "use": [
+        "confirmation_001",
+        "confirmation_002",
+        "confirmation_004"
+      ],
+      "candidates": [
+        "confirmation_001",
+        "confirmation_002",
+        "confirmation_004"
+      ]
+    },
+    "warning": {
+      "label": "警告 / 注意",
+      "use": [
+        "question_001",
+        "glitch_001",
+        "error_001"
+      ],
+      "candidates": [
+        "question_001",
+        "question_003",
+        "glitch_001",
+        "error_001"
+      ]
+    },
+    "error": {
+      "label": "错误 / 失败",
+      "use": [
+        "error_004"
+      ],
+      "candidates": [
+        "error_001",
+        "error_004",
+        "error_006"
+      ]
+    },
+    "notify": {
+      "label": "通知",
+      "use": [
+        "bong_001",
+        "glass_001"
+      ],
+      "candidates": [
+        "bong_001",
+        "glass_001",
+        "glass_003"
+      ]
+    }
+  },
+  "music": {
+    "use": "heavenly-loop",
+    "tracks": {
+      "contemplation": {
+        "title": "Contemplation",
+        "author": "joth",
+        "source": "https://opengameart.org/content/contemplation-0"
+      },
+      "heavenly-loop": {
+        "title": "Heavenly Loop",
+        "author": "isaiah658",
+        "source": "https://opengameart.org/content/heavenly-loop"
+      },
+      "calm-piano-1": {
+        "title": "Calm Piano 1 (Vaporware)",
+        "author": "cynicmusic",
+        "source": "https://opengameart.org/content/calm-piano-1-vaporware"
+      },
+      "calm-ambient-3": {
+        "title": "Calm Ambient 3 (Lifewave 2k)",
+        "author": "cynicmusic",
+        "source": "https://opengameart.org/content/calm-ambient-3-lifewave-2k"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "deck-2025-02-solana-secret-payment",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "catalog:",
+    "@slidev/theme-default": "catalog:",
+    "@slidev/theme-seriph": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "playwright-chromium": "catalog:"
+  }
+}

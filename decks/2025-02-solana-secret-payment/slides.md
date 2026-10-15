@@ -22,6 +22,8 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
+# GitHub Pages cannot serve deep links of single-page apps, so use /#/<page> URLs
+routerMode: hash
 ---
 
 # Solana Secret Payment System

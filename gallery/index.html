@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unic · Slides</title>
+<meta name="description" content="Unic 的演示文稿合集">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#000; --line:#1c1c1e; --line2:#2c2c2e; --muted:#8e8e93; --dim:#6e6e73;
+    --spectrum: linear-gradient(90deg,#4a9fc4 0%,#b6e3f4 14%,#fff 26%,#d8f6cc 40%,#b4e98d 54%,#e8e07a 68%,#f4b36a 80%,#f2845c 90%,#d94a4a 100%); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: #f5f5f7; font-family: Inter, "PingFang SC", "Noto Sans SC", sans-serif; }
+  .bar { height: 3px; background: var(--spectrum); }
+  header { max-width: 1180px; margin: 0 auto; padding: 4.5rem 1.5rem 2rem; position: relative; }
+  .kicker { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+  h1 { font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -.045em; line-height: 1.02; margin: .8rem 0 1rem; font-weight: 800; }
+  .sub { color: var(--muted); font-size: 1.1rem; max-width: 40rem; }
+  .tools { display: flex; gap: .8rem; margin-top: 2rem; flex-wrap: wrap; align-items: center; }
+  input { background: #0b0b0b; border: 1px solid var(--line2); color: #fff; border-radius: 999px; padding: .65rem 1.1rem; font: inherit; width: min(26rem, 100%); }
+  input:focus { outline: none; border-color: #fff; }
+  .count { color: var(--dim); font-size: .85rem; font-family: "Geist Mono", monospace; }
+  main { max-width: 1180px; margin: 0 auto; padding: 1rem 1.5rem 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.4rem; }
+  .deck { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: linear-gradient(180deg,#0d0d0d,#070707); transition: transform .3s, border-color .3s, box-shadow .3s; display: flex; flex-direction: column; }
+  .deck:hover { transform: translateY(-4px); border-color: #48484a; box-shadow: 0 24px 60px -30px rgba(166,224,122,.45); }
+  .thumb { display: block; aspect-ratio: 16/9; background: #050505; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+  .deck:hover .thumb img { transform: scale(1.03); }
+  .noimg { width: 100%; height: 100%; background: var(--spectrum); opacity: .25; }
+  .body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: .55rem; flex: 1; }
+  .meta { display: flex; gap: .4rem; flex-wrap: wrap; align-items: center; font-size: .72rem; color: var(--dim); }
+  .meta time { font-family: "Geist Mono", monospace; margin-right: .3rem; }
+  .tag { border: 1px solid var(--line2); border-radius: 999px; padding: .1rem .55rem; color: #c7c7cc; }
+  h2 { margin: 0; font-size: 1.2rem; letter-spacing: -.02em; line-height: 1.3; }
+  h2 a { color: #fff; text-decoration: none; }
+  p { margin: 0; color: #c7c7cc; font-size: .9rem; line-height: 1.6; flex: 1; }
+  .links { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .4rem; }
+  .btn { font-size: .78rem; font-weight: 600; text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,.7); border-radius: 999px; padding: .35rem .85rem; }
+  .btn.solid { background: #fff; color: #000; border-color: #fff; }
+  .btn.ghost { border-color: var(--line2); color: var(--muted); }
+  .btn:hover { border-color: #fff; color: #fff; }
+  .btn.solid:hover { color: #000; }
+  footer { text-align: center; color: var(--dim); font-size: .8rem; padding: 0 1rem 3rem; }
+  footer a { color: #c7c7cc; }
+  .empty { grid-column: 1/-1; color: var(--muted); text-align: center; padding: 3rem 0; display: none; }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<header>
+  <div class="kicker">Unic · Slides</div>
+  <h1>演示文稿合集</h1>
+  <div class="sub">每份 PPT 都可以直接在浏览器里放映；附件和代码放在同一个仓库里。</div>
+  <div class="tools">
+    <input id="q" type="search" placeholder="搜索标题、简介或标签" autocomplete="off">
+    <span class="count"><span id="n">__COUNT__</span> 份</span>
+  </div>
+</header>
+<main id="list">
+<!--DECKS-->
+  <div class="empty" id="empty">没有找到匹配的演示文稿</div>
+</main>
+<footer>源文件：<a href="__REPO__">__REPO__</a> · 使用 <a href="https://sli.dev">Slidev</a> 制作</footer>
+<script>
+  const q = document.getElementById('q'), items = [...document.querySelectorAll('.deck')]
+  q.addEventListener('input', () => {
+    const k = q.value.trim().toLowerCase(); let shown = 0
+    for (const el of items) { const hit = !k || el.textContent.toLowerCase().includes(k) || el.dataset.tags.includes(k); el.style.display = hit ? '' : 'none'; shown += hit }
+    document.getElementById('n').textContent = shown
+    document.getElementById('empty').style.display = shown ? 'none' : 'block'
+  })
+</script>
+</body>
+</html>
