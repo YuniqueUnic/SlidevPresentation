@@ -1,0 +1,7 @@
+{
+  "title": "Photon 接口版本管理：从行业做法到我们的选择",
+  "description": "从 Stripe、Polar 的版本管理做法抽出核心要求，比较 Photon 的三种方案（自己手写转换、Cadwyn、xidl），给出以 xidl 为目标的推荐路线。附可运行示例。",
+  "date": "2026-10-14",
+  "tags": ["API 版本管理", "xidl", "Stripe", "Polar", "Cadwyn"],
+  "public": true
+}

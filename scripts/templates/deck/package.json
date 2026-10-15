@@ -1,0 +1,8 @@
+{
+  "name": "deck-__SLUG__",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "slidev --open", "build": "slidev build", "export": "slidev export" },
+  "dependencies": { "@slidev/cli": "catalog:", "slidev-theme-unicorn": "workspace:*", "vue": "catalog:" },
+  "devDependencies": { "playwright-chromium": "catalog:" }
+}

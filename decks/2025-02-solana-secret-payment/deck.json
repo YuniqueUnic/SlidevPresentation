@@ -1,0 +1,7 @@
+{
+  "title": "Solana Secret Payment System",
+  "description": "基于 Solana 机密代币扩展与 Mysterium 思路的匿名支付设计：身份注册、协商流程、实时结算与匿名时间窗口。",
+  "date": "2025-02-25",
+  "tags": ["Solana", "Privacy", "Payment"],
+  "public": true
+}

@@ -3,7 +3,7 @@ name: Deploy pages
 on:
   workflow_dispatch:
   push:
-    branches: [main,master,dev]
+    branches: [main]
 
 permissions:
   contents: read
@@ -17,30 +17,26 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
-
-      - name: Setup @antfu/ni
-        run: npm i -g @antfu/ni
+          node-version: 24
+          cache: pnpm
 
       - name: Install dependencies
-        run: nci
+        run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+      # Thumbnails are committed (pnpm thumbs), so CI does not need a browser.
+      - name: Build every public deck and the gallery
+        run: pnpm build
+        env:
+          BASE: /${{ github.event.repository.name }}/
 
-      - name: Copy assets to dist folder
-        run: |
-          mkdir -p dist/
-          cp -r ./assets/ dist/
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -52,7 +48,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

@@ -1,0 +1,40 @@
+{
+  "name": "slidev-theme-unicorn",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unic's Slidev theme: black canvas, spectrum accents, step-synced explanations and synthesized sound effects.",
+  "keywords": [
+    "slidev-theme",
+    "slidev"
+  ],
+  "type": "module",
+  "engines": {
+    "slidev": ">=53.0.0"
+  },
+  "exports": {
+    "./composables/useSfx": "./composables/useSfx.ts",
+    "./package.json": "./package.json"
+  },
+  "slidev": {
+    "colorSchema": "dark",
+    "highlighter": "shiki",
+    "defaults": {
+      "transition": "fade-out",
+      "mdc": true,
+      "lineNumbers": false,
+      "fonts": {
+        "sans": "Inter",
+        "mono": "Geist Mono",
+        "weights": "400,500,600,700,800"
+      },
+      "routerMode": "hash"
+    }
+  },
+  "dependencies": {
+    "@iconify-json/ph": "catalog:",
+    "@iconify-json/simple-icons": "catalog:"
+  },
+  "peerDependencies": {
+    "@slidev/client": "*"
+  }
+}
